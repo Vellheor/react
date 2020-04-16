@@ -1,0 +1,9 @@
+.fastMessages{
+  display: grid;
+  text-align: center;
+  margin-top: 30px;
+  grid-template-columns: 4fr 4fr 4fr;
+}
+.fastMessages img{
+  width: 50px;
+}
