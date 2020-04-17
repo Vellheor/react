@@ -33,28 +33,32 @@ let store = {
          ]
       }
    },
+   _rerenderEntireTree(){
+      console.log("123");
+   },
+
    getState(){
       return this._state;
    },
-   rerenderEntireTree(){
-      console.log("123");
-   },
-   addPost(){
-      let newPost = {
-         id: 5,
-         message: this._state.profilePage.newPostText
-      };   
-      this._state.profilePage.postData.push(newPost);
-      this.updateNewPostText("");
-      this._rerenderEntireTree();
-   },
-   updateNewPostText(newText){
-      this._state.profilePage.newPostText = newText;
-      this._rerenderEntireTree();
-   },
    subscribe(observer){
       this._rerenderEntireTree = observer;
+   },
+   
+   dispatch(action){
+      if(action.type === "ADD-POST"){
+         let newPost = {
+            id: 5,
+            message: this._state.profilePage.newPostText
+         };   
+         this._state.profilePage.postData.push(newPost);
+         this._state.profilePage.newPostText = "";
+         this._rerenderEntireTree();
+      }else if(action.type === "UPDATE-NEW-POST-TEXT"){
+         this._state.profilePage.newPostText = action.newText;
+         this._rerenderEntireTree();
+      }
    }
+
 }
 
 
