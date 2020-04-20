@@ -2,21 +2,21 @@ const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 const SEND_MESSAGE = "SEND-MESSAGE";
 
 let initialState = {
-   messagesData: [
-      {id:1, message: "Hello"},
-      {id:2, message: "Hi, hero"},
-      {id:3, message: "World is here"},
-      {id:4, message: "Hello"}
-    ],
-    dialogsData: [
-      {id:1, name:"Кося"},
-      {id:2, name:"Рыжая"},
-      {id:3, name:"Рысь"},
-      {id:4, name:"Куша"},
-      {id:5, name:"Олежка"},
-      {id:6, name:"Гарри"}
-    ],
-    newMessageBody: ""
+      dialogsData: [
+         {id:1, name:"Кося"},
+         {id:2, name:"Рыжая"},
+         {id:3, name:"Рысь"},
+         {id:4, name:"Куша"},
+         {id:5, name:"Олежка"},
+         {id:6, name:"Гарри"}
+      ],
+      messagesData: [
+         {id:1, message: "Hello"},
+         {id:2, message: "Hi, hero"},
+         {id:3, message: "World is here"},
+         {id:4, message: "Hello"}
+      ],
+      newMessageBody: ""
 }
 
 

@@ -11,7 +11,7 @@ const Navbar = (props) => {
         <div><a>Music</a></div>
         <div><a>News</a></div>
         <div><a>Settings</a></div>
-        <FastMessages fastMessage={props.navbar.fastMessage}/>
+        {/* <FastMessages fastMessage={props.navbar.fastMessage}/> */}
       </nav>
    );
 }
