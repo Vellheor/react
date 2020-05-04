@@ -1,14 +1,14 @@
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 
 let initialState = {
-   users: [
-      // {id:1, photoUrl: "https://ericson-lab.com/wp-content/uploads/2017/08/nophoto.png", followed: false, fullName: "Dmitry", status: "I am a manager", location: {city: 'Minsk', country: 'Belarus'}},
-      // {id:2, photoUrl: "https://ericson-lab.com/wp-content/uploads/2017/08/nophoto.png", followed: true, fullName: "Alex", status: "I am a boss", location: {city: 'Toronto', country: 'Kanada'}},
-      // {id:3, photoUrl: "https://ericson-lab.com/wp-content/uploads/2017/08/nophoto.png", followed: true, fullName: "Vera", status: "I am a wife", location: {city: 'Kiev', country: 'Ukraine'}},
-      // {id:4, photoUrl: "https://ericson-lab.com/wp-content/uploads/2017/08/nophoto.png", followed: false, fullName: "Kusha", status: "I am a paradaise", location: {city: 'Borodyanka', country: 'Ukraine'}}
-    ]
+   users: [],
+   pageSize: 5,
+   tatolUsersCount: 20,
+   currentPage: 1
 }
 
 const usersReducer = (state = initialState, action) =>{
@@ -34,7 +34,11 @@ const usersReducer = (state = initialState, action) =>{
             })
          }
       case SET_USERS:
-         return {...state, users: [...state.users, ...action.users]} 
+         return {...state, users: action.users} 
+      case SET_CURRENT_PAGE:
+         return {...state, currentPage : action.currentPage} 
+      case SET_TOTAL_USERS_COUNT:
+         return {...state, tatolUsersCount : action.tatolUsersCount} 
       default:
          return state;
    }
@@ -43,6 +47,8 @@ const usersReducer = (state = initialState, action) =>{
 export const followAC = (userId) => ({type: FOLLOW, userId});
 export const unfollowAC = (userId) =>({type: UNFOLLOW, userId});
 export const setUsersAC = (users) =>({type: SET_USERS, users});
+export const setCurrentPageAC = (currentPage) =>({type: SET_CURRENT_PAGE, currentPage});
+export const setTatolUsersCountAC = (tatolUsersCount) =>({type: SET_TOTAL_USERS_COUNT, tatolUsersCount});
 
 
 export default usersReducer;
