@@ -4,12 +4,14 @@ import * as Axios from 'axios';
 import noPhoto from '../../assets/img/user.png';
 
 let Users = (props) => {
-   if(props.users.length === 0){
-
-      Axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-         props.setUsers(response.data.items)
-      });
-
+   
+   let getUsers = () => {
+      if(props.users.length === 0){
+         Axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            props.setUsers(response.data.items)
+         });
+      }
+   }
 
       // props.setUsers([
       //    {id:1, photoUrl: "https://ericson-lab.com/wp-content/uploads/2017/08/nophoto.png", followed: false, fullName: "Dmitry", status: "I am a manager", location: {city: 'Minsk', country: 'Belarus'}},
@@ -17,9 +19,10 @@ let Users = (props) => {
       //    {id:3, photoUrl: "https://ericson-lab.com/wp-content/uploads/2017/08/nophoto.png", followed: true, fullName: "Vera", status: "I am a wife", location: {city: 'Kiev', country: 'Ukraine'}},
       //    {id:4, photoUrl: "https://ericson-lab.com/wp-content/uploads/2017/08/nophoto.png", followed: false, fullName: "Kusha", status: "I am a paradaise", location: {city: 'Borodyanka', country: 'Ukraine'}}
       // ])
-   }
+   
    return (
    <div>
+      <button onClick={getUsers}>Get Users</button>
       {
          props.users.map( u => <div key={u.id} className={style.grid_4}>
             <div>
