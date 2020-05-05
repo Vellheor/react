@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
-import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTatolUsersCountAC, setIsFetchingAC } from '../../redux/users-reducer';
+import { follow, unfollow, setUsers, setCurrentPage, setTatolUsersCount, setIsFetching } from '../../redux/users-reducer';
 import Axios from 'axios';
 import Loader from '../common/Loader/Loader';
 
@@ -53,27 +53,27 @@ let mapStateToProps = (state) => {
    }
 }
 
-let mapDispatchToProps = (dispatch) => {
-   return {
-      follow: (userId) => {
-         dispatch(followAC(userId));
-      },
-      unfollow: (userId) => {
-         dispatch(unfollowAC(userId));
-      },
-      setUsers: (users) => {
-         dispatch(setUsersAC(users));
-      },
-      setCurrentPage: (pageNumber) => {
-         dispatch(setCurrentPageAC(pageNumber));
-      },
-      setTatolUsersCount: (tatolUsersCount) => {
-         dispatch(setTatolUsersCountAC(tatolUsersCount));
-      },
-      setIsFetching: (isFetching) => {
-         dispatch(setIsFetchingAC(isFetching));
-      }
-   }
-}
+// let mapDispatchToProps = (dispatch) => {
+//    return {
+//       follow: (userId) => {
+//          dispatch(followAC(userId));
+//       },
+//       unfollow: (userId) => {
+//          dispatch(unfollowAC(userId));
+//       },
+//       setUsers: (users) => {
+//          dispatch(setUsersAC(users));
+//       },
+//       setCurrentPage: (pageNumber) => {
+//          dispatch(setCurrentPageAC(pageNumber));
+//       },
+//       setTatolUsersCount: (tatolUsersCount) => {
+//          dispatch(setTatolUsersCountAC(tatolUsersCount));
+//       },
+//       setIsFetching: (isFetching) => {
+//          dispatch(setIsFetchingAC(isFetching));
+//       }
+//    }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersApiComponent);
+export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTatolUsersCount, setIsFetching})(UsersApiComponent);
