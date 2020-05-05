@@ -1,11 +1,17 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
+import Loader from '../../common/Loader/Loader';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+   if(!props.profile){
+      return <Loader />
+   }
+
+
    return (
    <div>
       <div className={s.contentInfo}>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTUX60Xv6BNsBgNu3JkuAkccgVXwZI5c-PP8CePJjmIhQEmQphY&usqp=CAU"></img>
+        <img src={props.profile.photos.large}></img>
       </div>
    </div>
    );

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
 import { follow, unfollow, setUsers, setCurrentPage, setTatolUsersCount, setIsFetching } from '../../redux/users-reducer';
-import Axios from 'axios';
+import * as Axios from 'axios';
 import Loader from '../common/Loader/Loader';
 
 
