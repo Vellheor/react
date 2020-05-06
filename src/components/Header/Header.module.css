@@ -8,3 +8,9 @@
    width: 40px;
    margin-left: 20px;
  }
+ .blockLogin{
+  float: right;
+ }
+ .blockLogin a{
+  text-decoration: none;
+ }
