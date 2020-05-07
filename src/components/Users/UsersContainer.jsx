@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
-import { follow, unfollow, setUsers, setCurrentPage, setTatolUsersCount, setIsFetching } from '../../redux/users-reducer';
+import { follow, unfollow, setUsers, setCurrentPage, setTatolUsersCount, setIsFetching, followingInProgress} from '../../redux/users-reducer';
 import Loader from '../common/Loader/Loader';
 import {userAPI} from '../../api/api';
 
@@ -37,6 +37,8 @@ class UsersApiComponent extends React.Component{
       users = {this.props.users}
       unfollow = {this.props.unfollow}
       follow = {this.props.follow}
+      followingInProgress = {this.props.followingInProgress}
+      followingProgress = {this.props.followingProgress}
       />
    </>
    }
@@ -51,31 +53,9 @@ let mapStateToProps = (state) => {
       pageSize: state.usersPage.pageSize,
       tatolUsersCount: state.usersPage.tatolUsersCount,
       currentPage: state.usersPage.currentPage,
-      isFetching: state.usersPage.isFetching
+      isFetching: state.usersPage.isFetching,
+      followingProgress: state.usersPage.followingProgress
    }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//    return {
-//       follow: (userId) => {
-//          dispatch(followAC(userId));
-//       },
-//       unfollow: (userId) => {
-//          dispatch(unfollowAC(userId));
-//       },
-//       setUsers: (users) => {
-//          dispatch(setUsersAC(users));
-//       },
-//       setCurrentPage: (pageNumber) => {
-//          dispatch(setCurrentPageAC(pageNumber));
-//       },
-//       setTatolUsersCount: (tatolUsersCount) => {
-//          dispatch(setTatolUsersCountAC(tatolUsersCount));
-//       },
-//       setIsFetching: (isFetching) => {
-//          dispatch(setIsFetchingAC(isFetching));
-//       }
-//    }
-// }
-
-export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTatolUsersCount, setIsFetching})(UsersApiComponent);
+export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTatolUsersCount, setIsFetching, followingInProgress})(UsersApiComponent);

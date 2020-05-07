@@ -4,13 +4,15 @@ const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const SET_IS_FETCHING = "SET_IS_FETCHING";
+const FOLLOWING_PROGRESS = "FOLLOWING_PROGRESS";
 
 let initialState = {
    users: [],
    pageSize: 5,
    tatolUsersCount: 20,
    currentPage: 1,
-   isFetching: false
+   isFetching: false,
+   followingProgress: []
 }
 
 const usersReducer = (state = initialState, action) =>{
@@ -43,6 +45,11 @@ const usersReducer = (state = initialState, action) =>{
          return {...state, tatolUsersCount : action.tatolUsersCount} 
       case SET_IS_FETCHING:
          return {...state, isFetching : action.isFetching} 
+      case FOLLOWING_PROGRESS:
+         return {
+            ...state, 
+            followingProgress : action.isFetching ? [...state.followingProgress, action.userId] : state.followingProgress.filter( id => id != action.userId)
+         } 
       default:
          return state;
    }
@@ -54,6 +61,7 @@ export const setUsers = (users) =>({type: SET_USERS, users});
 export const setCurrentPage = (currentPage) =>({type: SET_CURRENT_PAGE, currentPage});
 export const setTatolUsersCount = (tatolUsersCount) =>({type: SET_TOTAL_USERS_COUNT, tatolUsersCount});
 export const setIsFetching = (isFetching) =>({type: SET_IS_FETCHING, isFetching});
+export const followingInProgress = (isFetching, userId) =>({type: FOLLOWING_PROGRESS, isFetching, userId});
 
 
 export default usersReducer;
