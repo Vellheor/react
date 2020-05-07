@@ -1,30 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
-import { follow, unfollow, setUsers, setCurrentPage, setTatolUsersCount, setIsFetching, followingInProgress} from '../../redux/users-reducer';
+import { follow, unfollow, setUsers, setCurrentPage, setTatolUsersCount, setIsFetching, followingInProgress, getUsers} from '../../redux/users-reducer';
 import Loader from '../common/Loader/Loader';
-import {userAPI} from '../../api/api';
 
 
 
 class UsersApiComponent extends React.Component{
    componentDidMount(){
-      this.props.setIsFetching(true);
-      userAPI.getUsers(this.props.currentPage, this.props.pageSize)
-      .then(data => {
-         this.props.setIsFetching(false);
-         this.props.setUsers(data.items);
-         this.props.setTatolUsersCount(data.totalCount);
-      });
+      this.props.getUsers(this.props.currentPage, this.props.pageSize);
+      // this.props.setIsFetching(true);
+      // userAPI.getUsers(this.props.currentPage, this.props.pageSize)
+      // .then(data => {
+      //    this.props.setIsFetching(false);
+      //    this.props.setUsers(data.items);
+      //    this.props.setTatolUsersCount(data.totalCount);
+      // });
    }
    onPageChanged = (pageNumber) => {
-      this.props.setIsFetching(true);
-      this.props.setCurrentPage(pageNumber);
-      userAPI.getUsers(pageNumber, this.props.pageSize)
-      .then(data => {
-         this.props.setIsFetching(false);
-         this.props.setUsers(data.items)
-      });
+      this.props.getUsers(pageNumber, this.props.pageSize);
+      // this.props.setIsFetching(true);
+      // this.props.setCurrentPage(pageNumber);
+      // userAPI.getUsers(pageNumber, this.props.pageSize)
+      // .then(data => {
+      //    this.props.setIsFetching(false);
+      //    this.props.setUsers(data.items)
+      // });
    }
    render(){
     return <>
@@ -58,4 +59,4 @@ let mapStateToProps = (state) => {
    }
 }
 
-export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTatolUsersCount, setIsFetching, followingInProgress})(UsersApiComponent);
+export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTatolUsersCount, setIsFetching, followingInProgress, getUsers})(UsersApiComponent);
