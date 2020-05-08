@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import Loader from '../../common/Loader/Loader';
+import Status from './Status';
 
 const ProfileInfo = (props) => {
    if(!props.profile){
@@ -12,6 +13,9 @@ const ProfileInfo = (props) => {
    <div>
       <div className={s.contentInfo}>
         <img src={props.profile.photos.large}></img>
+      </div>
+      <div>
+         <Status status="Hello, you are beautiful"/>
       </div>
    </div>
    );
