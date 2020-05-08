@@ -43,3 +43,24 @@ export const userAPI = {
       });
    }
 }
+
+export const profileAPI = {
+   userProfile(id){
+      return instance.get(`profile/`+id)
+      .then( response => {
+         return response.data;
+      });
+   },
+   getProfileStatus(id){
+      return instance.get(`profile/status/`+id)
+      .then( response => {
+         return response.data;
+      });
+   },
+   updateProfileStatus(status){
+      return instance.put(`profile/status/`, {status: status})
+      .then( response => {
+         return response.data;
+      }); 
+   }
+}
