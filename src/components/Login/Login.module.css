@@ -1,0 +1,25 @@
+.form, h1{
+   text-align: center;
+}
+.form input{
+   width: 95%;
+   border: 1px solid #eee;
+   padding: 10px;
+   margin: 5px 0;
+   border-radius: 5px;
+}
+.check{
+   text-align: left;
+   margin-left: 15px;
+}
+.check input{
+   width: 20px;
+}
+.form button{
+   background: #d2d2d2;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 5px 20px;
+    text-transform: uppercase;
+}
