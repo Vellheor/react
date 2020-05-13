@@ -3,14 +3,14 @@ import Profile from './Profile';
 import { connect } from 'react-redux';
 import { userProfile, getProfileStatus, updateProfileStatus } from '../../redux/profile-reducer';
 import { withRouter } from 'react-router-dom';
-import {withAuthRedirect} from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 class ProfileContainer extends React.Component{
    
    componentDidMount(){
+      
       let userId=this.props.match.params.userId;
-      (!userId)? userId = 7849 : userId=userId;
+      if(!userId) userId = this.props.autorizedUserId;
       this.props.userProfile(userId);
       this.props.getProfileStatus(userId);
    }
@@ -22,8 +22,10 @@ class ProfileContainer extends React.Component{
 
 let mapStateToProps = (state) => (
    {
+      
       profile: state.profilePage.profile,
-      status: state.profilePage.status
+      status: state.profilePage.status,
+      autorizedUserId: state.auth.userId
    }
 )
 
