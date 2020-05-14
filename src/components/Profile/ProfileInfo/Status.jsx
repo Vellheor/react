@@ -1,49 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-class ProfileInfo extends React.Component{
-   
-   state = {
-      editMode: false,
-      status: this.props.status
-   };
-   
-   activateEditMode = () => {
-      this.setState({
-         editMode: true
-      })
-   };
-   deactivateEditMode = () => {
-      this.setState({
-         editMode: false
-      });
-      this.props.updateProfileStatus(this.state.status)
-   };
-   onStatusChange = (e) => {
-      this.setState({
-         status: e.currentTarget.value
-      })
-   };
+const Status = (props) => {
+   let [editMode, setEditMode] = useState(false);
+   let [status, setStatus] = useState(props.status);
 
-   componentDidUpdate(prevProps, prevState){
-      if(prevProps.status !== this.props.status){
-         this.setState({
-            status: this.props.status
-         })
-      }
-   }
+   let activateEditMode = () => {
+         setEditMode(true)
+      };
+   let deactivateEditMode = () => {
+         setEditMode(false);
+         props.updateProfileStatus(status)
+      };
+   let onStatusChange = (e) => {
+         setStatus(e.currentTarget.value)
+      };
 
-   render(){
-      return (
+   return (
       <div>
-         {!this.state.editMode &&
-            <div onClick={ this.activateEditMode }>{this.props.status || "Заглушка"}</div>
+         {!editMode &&
+            <div onClick={activateEditMode }>{status}</div>
          }
-         {this.state.editMode &&
-            <div><input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode} type="text" value={this.state.status}/></div>
+         {editMode &&
+            <div><input type="text" onBlur={deactivateEditMode} onChange={onStatusChange} autoFocus={true} value={status}/></div>
          }
       </div>
       );
-   }
 }
 
-export default ProfileInfo;
+
+export default Status;
