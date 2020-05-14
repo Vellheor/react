@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 const Status = (props) => {
    let [editMode, setEditMode] = useState(false);
@@ -15,6 +15,9 @@ const Status = (props) => {
          setStatus(e.currentTarget.value)
       };
 
+   useEffect( () =>{
+      setStatus(props.status)
+   }, [props.status]);
    return (
       <div>
          {!editMode &&
