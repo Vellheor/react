@@ -3,29 +3,16 @@ import { connect } from 'react-redux';
 import Users from './Users';
 import { follow, unfollow, setUsers, setCurrentPage, setTatolUsersCount, setIsFetching, followingInProgress, getUsers} from '../../redux/users-reducer';
 import Loader from '../common/Loader/Loader';
+import {getUser, getPageSize, getTatolUsersCount, getCurrentPage, getIsFetching, getFollowingProgress } from '../../redux/user-selector';
 
 
 
 class UsersApiComponent extends React.Component{
    componentDidMount(){
       this.props.getUsers(this.props.currentPage, this.props.pageSize);
-      // this.props.setIsFetching(true);
-      // userAPI.getUsers(this.props.currentPage, this.props.pageSize)
-      // .then(data => {
-      //    this.props.setIsFetching(false);
-      //    this.props.setUsers(data.items);
-      //    this.props.setTatolUsersCount(data.totalCount);
-      // });
    }
    onPageChanged = (pageNumber) => {
       this.props.getUsers(pageNumber, this.props.pageSize);
-      // this.props.setIsFetching(true);
-      // this.props.setCurrentPage(pageNumber);
-      // userAPI.getUsers(pageNumber, this.props.pageSize)
-      // .then(data => {
-      //    this.props.setIsFetching(false);
-      //    this.props.setUsers(data.items)
-      // });
    }
    render(){
     return <>
@@ -50,12 +37,12 @@ class UsersApiComponent extends React.Component{
 
 let mapStateToProps = (state) => {
    return {
-      users: state.usersPage.users,
-      pageSize: state.usersPage.pageSize,
-      tatolUsersCount: state.usersPage.tatolUsersCount,
-      currentPage: state.usersPage.currentPage,
-      isFetching: state.usersPage.isFetching,
-      followingProgress: state.usersPage.followingProgress
+      users: getUser(state),
+      pageSize: getPageSize(state),
+      tatolUsersCount: getTatolUsersCount(state),
+      currentPage: getCurrentPage(state),
+      isFetching: getIsFetching(state),
+      followingProgress: getFollowingProgress(state)
    }
 }
 
