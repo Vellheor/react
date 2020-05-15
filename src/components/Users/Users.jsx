@@ -2,25 +2,13 @@ import React from 'react';
 import style from './users.module.css';
 import noPhoto from '../../assets/img/user.png';
 import { NavLink } from 'react-router-dom';
-import {userAPI} from '../../api/api';
+import Pagination from '../common/Pagination/Pagination';
 
 
 let Users = (props) => {
-   let pagesCount = Math.ceil( props.tatolUsersCount / props.pageSize );
-      let pages = [];
-      for(let i = 1; i <= pagesCount; i++){
-         pages.push(i);
-      }
    return(
       <div>
-         
-         <div>
-            {
-               pages.map( p => {
-                  return <span className={props.currentPage === p && style.selectPage} onClick={ () => { props.onPageChanged(p); } }>{p}</span>
-               })
-            }
-         </div>
+         <Pagination tatolItemsCount={props.tatolUsersCount} pageSize={props.pageSize} currentPage={props.currentPage} onPageChanged={props.onPageChanged}/>
          {
             props.users.map( u => <div key={u.id} className={style.grid_4}>
                <div>
