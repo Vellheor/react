@@ -2,3 +2,6 @@
    width: 15%;
    height: 150px;
  }
+ .mainPhoto {
+   max-width: 200px;
+ }
