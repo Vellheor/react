@@ -68,6 +68,12 @@ export const profileAPI = {
       .then( response => {
          return response.data;
       }); 
+   },
+   changeDataProfile(profile){
+      return instance.put(`profile`, profile)
+      .then( response => {
+         return response.data;
+      });
    }
 }
 

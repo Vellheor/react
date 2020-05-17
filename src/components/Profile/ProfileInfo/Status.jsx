@@ -21,7 +21,7 @@ const Status = (props) => {
    return (
       <div>
          {!editMode &&
-            <div onClick={activateEditMode }>{status}</div>
+            <div onClick={activateEditMode }><b>Статус:</b> {status}</div>
          }
          {editMode &&
             <div><input type="text" onBlur={deactivateEditMode} onChange={onStatusChange} autoFocus={true} value={status}/></div>
